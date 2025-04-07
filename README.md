@@ -39,9 +39,9 @@ A full-stack web application to manage and track products, monitor stock levels,
 - JWT-based auth with HttpOnly cookies
 - CORS supported for frontend-backend communication
 - First-time setup creates a default admin user:
-
-- Username: admin  
-- Password: admin@123
+- Login
+  - Username: admin  
+  - Password: admin@123
 
 
 
@@ -53,8 +53,10 @@ A full-stack web application to manage and track products, monitor stock levels,
 >> cd stock-management-system
 ```
 2. Create Environment Variables
+```bash
 # Copy .env.example in both frontend and backend folders
 # Create a .env file in each and add your own values
+```
 
 3. Start Frontend:
 ```bash
