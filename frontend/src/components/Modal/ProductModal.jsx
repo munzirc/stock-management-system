@@ -97,8 +97,8 @@ const ProductModal = ({ categories, setProducts, products }) => {
       showSnackbar({ message: data.message, severity: data.severity });
       if (mode === "update") {
         setProducts(prev =>
-          [products, ...prev.filter(p => p._id !== data.product._id)]
-        );
+          [data.product, ...prev.filter(p => p._id !== data.product._id)]
+        );        
       } else if(mode === 'create') {
         setProducts(prev => [data.product, ...prev]);
       }
