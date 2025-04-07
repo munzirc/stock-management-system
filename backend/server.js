@@ -35,8 +35,8 @@ app.use("/api/stocks", stockRouter);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/reports", reportRouter);
 
-app.get("/", (req, res) => {
-  res.send("Stock Management API is running...");
+app.get("/health", (req, res) => {
+  res.status(200).json({message: "Stock Management API is running..."});
 });
 
 const PORT = process.env.PORT || 5000;
