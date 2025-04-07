@@ -47,36 +47,38 @@ A full-stack web application to manage and track products, monitor stock levels,
 
 🛠️ Setup Instructions:
 
-    1. Clone the Repository
+1. Clone the Repository
 ```bash
-        >> git clone https://github.com/munzirc/stock-management-system.git
-        >> cd stock-management-system
+>> git clone https://github.com/munzirc/stock-management-system.git
+>> cd stock-management-system
 ```
-    2. Create Environment Variables
-        # Copy .env.example in both frontend and backend folders
-        # Create a .env file in each and add your own values
+2. Create Environment Variables
+# Copy .env.example in both frontend and backend folders
+# Create a .env file in each and add your own values
 
-    3. Start Frontend:
+3. Start Frontend:
 ```bash
-        >>stock-management-system>> cd frontend
-        >>stock-management-system>>frontend>> npm install
-        >>stock-management-system>>frontend>> npm run dev
+>>stock-management-system>> cd frontend
+>>stock-management-system>>frontend>> npm install
+>>stock-management-system>>frontend>> npm run dev
+# runs on http://localhost:5173
 ```
-        # runs on http://localhost:5173
-    4. Start Backend:
+4. Start Backend:
 ```bash
-        >>stock-management-system>> cd  backend
-        >>stock-management-system>>backend>> npm install
-        >>stock-management-system>>backend>> npm run dev
+>>stock-management-system>> cd  backend
+>>stock-management-system>>backend>> npm install
+>>stock-management-system>>backend>> npm run dev
+# runs on http://localhost:5000
 ```
-        # runs on http://localhost:5000
 
-    5. Hosted Version
+5. Hosted Version
+
 ```bash
-        Frontend: https://stock-management-system-frontend-gilt.vercel.app/
-        Backend API: https://stock-management-system-backend-w67c.onrender.com
+Frontend: https://stock-management-system-frontend-gilt.vercel.app/
+Backend API: https://stock-management-system-backend-w67c.onrender.com
 ```
 
 📌 Future Improvements
-    - Role-based access (admin vs staff)
-    - Implement email or push notifications for low stock alerts
+
+- Role-based access (admin vs staff)
+- Implement email or push notifications for low stock alerts
