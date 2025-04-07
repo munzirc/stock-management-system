@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 import Login from "./pages/Login";
 import authService from "./services/auth.api";
+import authApi from "./services/auth.api";
 
 function App() {
   const {
@@ -22,8 +23,14 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    const root = window.document.documentElement;
-      root.classList.add('dark');
+    const createAdminUser = async () => {
+       try {
+          await authApi.createUser('admin','admin@123');
+       } catch (error) {
+         console.log(error)
+       }
+    } 
+    createAdminUser();
   }, []);
 
   useEffect(() => {

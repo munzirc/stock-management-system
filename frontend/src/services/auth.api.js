@@ -32,13 +32,12 @@ const login = async (username, password) => {
 };
 
 const logout = async () => {
-
   const res = await fetch(`${BASE_URL}/auth/logout`, {
-      method: "POST",
-      credentials: "include",
+    method: "POST",
+    credentials: "include",
   });
 
-  const data = await res.json()
+  const data = await res.json();
 
   if (!res.ok) {
     const err = new Error(data.message);
@@ -47,11 +46,27 @@ const logout = async () => {
   }
 
   return data;
-  
+};
+
+const createUser = async (username, password) => {
+  try {
+    const res = await fetch(`${BASE_URL}/auth/create-user`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Login failed");
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export default {
   checkAuth,
   login,
   logout,
+  createUser,
 };

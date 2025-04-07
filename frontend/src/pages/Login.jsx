@@ -44,7 +44,7 @@ const Login = () => {
 
         try {
           await authService.login(username, password);
-          setIsAuthenticated(true);
+          await setIsAuthenticated(true);
           navigate("/dash");
         } catch (error) {
           showSnackbar({ message: error.message, severity: "error" });
