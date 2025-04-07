@@ -10,8 +10,8 @@ import productRouter from "./routes/product.route.js";
 import categoryRouter from "./routes/category.route.js";
 import salesRouter from "./routes/sales.route.js";
 import stockRouter from "./routes/stock.route.js";
-import analyticsRoutes from './routes/analytics.route.js';
-import reportRouter from './routes/report.route.js';
+import analyticsRoutes from "./routes/analytics.route.js";
+import reportRouter from "./routes/report.route.js";
 
 dotenv.config();
 connectDB();
@@ -20,7 +20,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.ALLOWED_ORIGIN,
     credentials: true,
   })
 );
