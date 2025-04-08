@@ -7,6 +7,8 @@ import {
   Button,
   FormControl,
   FormHelperText,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import ProductForm from "../Forms/ProductForm";
@@ -18,18 +20,20 @@ const modalStyle = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  boxShadow: 24,
+  bgcolor: "rgba(255, 255, 255, 0.1)",
+  backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)",
+  boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+  border: "1px solid rgba(255, 255, 255, 0.2)",
   borderRadius: 3,
   p: 4,
   width: {
     xs: "90%",
-    sm: 400,   
+    sm: 400,
   },
   maxHeight: "90vh",
   overflowY: "auto",
 };
-
 
 const ProductModal = ({ categories, setProducts, products }) => {
   const { mode, open, setOpen, activeProduct, showSnackbar } =
@@ -93,17 +97,20 @@ const ProductModal = ({ categories, setProducts, products }) => {
     if (!validate()) return;
     try {
       const data =
-        mode === "create" ? await addProduct(formData) : await updateProduct(formData);
+        mode === "create"
+          ? await addProduct(formData)
+          : await updateProduct(formData);
       showSnackbar({ message: data.message, severity: data.severity });
       if (mode === "update") {
-        setProducts(prev =>
-          [data.product, ...prev.filter(p => p._id !== data.product._id)]
-        );        
-      } else if(mode === 'create') {
-        setProducts(prev => [data.product, ...prev]);
+        setProducts((prev) => [
+          data.product,
+          ...prev.filter((p) => p._id !== data.product._id),
+        ]);
+      } else if (mode === "create") {
+        setProducts((prev) => [data.product, ...prev]);
       }
     } catch (error) {
-        showSnackbar({ message: error.message, severity: "error" });
+      showSnackbar({ message: error.message, severity: "error" });
     } finally {
       setOpen(false);
     }
@@ -113,13 +120,12 @@ const ProductModal = ({ categories, setProducts, products }) => {
     setOpen(false);
   };
 
+  const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Modal open={open} onClose={handleClose}>
       <Box sx={modalStyle}>
-        <Typography variant="h6" mb={2}>
-          {mode === "create" ? "Add Product" : "Update Product"}
-        </Typography>
-
         <ProductForm
           mode={mode}
           categories={categories}

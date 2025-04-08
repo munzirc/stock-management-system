@@ -6,7 +6,7 @@ const AddProductButton = ({handleAddProduct}) => {
     <div>
       <button
         onClick={handleAddProduct}
-        className="hidden sm:flex items-center leading-0 right-2 gap-1  px-4 py-2 bg-green-600 text-white text-md font-semibold text-sm rounded-xl transition-all duration-150 hover:bg-green-700 active:scale-95 shadow-md hover:shadow-lg"
+        className="hidden px-4 py-2 max-w-fit rounded-lg text-white text-xs sm:text-sm font-semibold sm:flex items-center justify-center transition bg-green-600 hover:bg-green-700"
       >
         <AddIcon sx={{ fontSize: 16 }} />
         Add Product

@@ -18,7 +18,7 @@ const ProductFilter = ({
           value={filters.category}
           name="category"
           onChange={handleChange}
-          className="w-full text-sm  bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:outline-none focus:ring-0 border-none"
+          className="w-full text-sm  bg-white  text-gray-900 rounded-md focus:outline-none focus:ring-0 border-none"
         >
           <option value="" disabled>
             Category

@@ -1,90 +1,198 @@
-import { Box, Button, FormControl, FormHelperText, MenuItem, TextField } from '@mui/material'
-import React from 'react'
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  MenuItem,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import React from "react";
 
-const ProductForm = ({mode, categories, handleClose, formData,errors,handleChange, handleFormSubmit}) => {
+const ProductForm = ({
+  mode,
+  categories,
+  handleClose,
+  formData,
+  errors,
+  handleChange,
+  handleFormSubmit,
+}) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const fields = [
+    { name: "name", label: "Name", type: "text" },
+    { name: "price", label: "Price", type: "number" },
+    { name: "quantityInStock", label: "Quantity in Stock", type: "number" },
+  ];
 
   return (
     <form onSubmit={handleFormSubmit} noValidate>
-          <FormControl fullWidth margin="normal" error={Boolean(errors.name)}>
-            <TextField
-              label="Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              error={Boolean(errors.name)}
-            />
-            {errors.name && <FormHelperText>{errors.name}</FormHelperText>}
-          </FormControl>
+      <Typography
+        variant="h5"
+        align="center"
+        sx={{
+          fontWeight: "bold",
+          color: "#fff",
+          mb: 2,
+          fontSize: isSmallScreen ? "1.2rem" : "1.5rem",
+        }}
+      >
+        {mode === "create" ? "Add Product" : "Update Product"}
+      </Typography>
 
-          <FormControl fullWidth margin="normal" error={Boolean(errors.category)}>
-            <TextField
-              label="Category"
-              name="category"
-              select
-              value={formData.category}
-              onChange={handleChange}
-              required
-              error={Boolean(errors.category)}
-            >
-              {categories.map((cat) => (
-                <MenuItem key={cat._id} value={cat._id}>
-                  {cat.name}
-                </MenuItem>
-              ))}
-            </TextField>
-            {errors.category && <FormHelperText>{errors.category}</FormHelperText>}
-          </FormControl>
+      {fields.map(({ name, label, type }) => (
+        <FormControl
+          fullWidth
+          margin="normal"
+          error={Boolean(errors[name])}
+          key={name}
+        >
+          <TextField
+            label={label}
+            name={name}
+            type={type}
+            value={formData[name]}
+            onChange={handleChange}
+            required
+            error={Boolean(errors[name])}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                color: "#fff",
+                "& fieldset": { borderColor: "#fff" },
+                "&:hover fieldset": { borderColor: "#fff" },
+                "&.Mui-focused fieldset": { borderColor: "#fff" },
+                "& input::placeholder": { color: "#fff" },
+              },
+              "& .MuiInputLabel-root": {
+                color: "#ccc",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "#fff",
+              },
+              fontSize: isSmallScreen ? "0.875rem" : "1rem",
+            }}
+            InputLabelProps={{
+              style: { fontSize: isSmallScreen ? "0.875rem" : "1rem" },
+            }}
+          />
+          {errors[name] && <FormHelperText>{errors[name]}</FormHelperText>}
+        </FormControl>
+      ))}
 
-          <FormControl fullWidth margin="normal" error={Boolean(errors.price)}>
-            <TextField
-              label="Price"
-              name="price"
-              type="number"
-              value={formData.price}
-              onChange={handleChange}
-              required
-              error={Boolean(errors.price)}
-            />
-            {errors.price && <FormHelperText>{errors.price}</FormHelperText>}
-          </FormControl>
+      {/* Category dropdown */}
+      <FormControl fullWidth margin="normal" error={Boolean(errors.category)}>
+        <TextField
+          label="Category"
+          name="category"
+          select
+          value={formData.category}
+          onChange={handleChange}
+          required
+          error={Boolean(errors.category)}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              color: "#fff",
+              "& fieldset": { borderColor: "#fff" },
+              "&:hover fieldset": { borderColor: "#fff" },
+              "&.Mui-focused fieldset": { borderColor: "#fff" },
+            },
+            "& .MuiInputLabel-root": {
+              color: "#ccc",
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+              color: "#fff",
+            },
+            fontSize: isSmallScreen ? "0.875rem" : "1rem",
+          }}
+          InputLabelProps={{
+            style: { fontSize: isSmallScreen ? "0.875rem" : "1rem" },
+          }}
+        >
+          {categories.map((cat) => (
+            <MenuItem key={cat._id} value={cat._id}>
+              {cat.name}
+            </MenuItem>
+          ))}
+        </TextField>
+        {errors.category && <FormHelperText>{errors.category}</FormHelperText>}
+      </FormControl>
 
-          <FormControl fullWidth margin="normal" error={Boolean(errors.quantityInStock)}>
-            <TextField
-              label="Quantity in Stock"
-              name="quantityInStock"
-              type="number"
-              value={formData.quantityInStock}
-              onChange={handleChange}
-              required
-              error={Boolean(errors.quantityInStock)}
-            />
-            {errors.quantityInStock && (
-              <FormHelperText>{errors.quantityInStock}</FormHelperText>
-            )}
-          </FormControl>
+      {/* Description */}
+      <FormControl fullWidth margin="normal">
+        <TextField
+          label="Description"
+          name="description"
+          multiline
+          rows={3}
+          value={formData.description}
+          onChange={handleChange}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              color: "#fff",
+              "& fieldset": { borderColor: "#fff" },
+              "&:hover fieldset": { borderColor: "#fff" },
+              "&.Mui-focused fieldset": { borderColor: "#fff" },
+            },
+            "& .MuiInputLabel-root": {
+              color: "#ccc",
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+              color: "#fff",
+            },
+            fontSize: isSmallScreen ? "0.875rem" : "1rem",
+          }}
+          InputLabelProps={{
+            style: { fontSize: isSmallScreen ? "0.875rem" : "1rem" },
+          }}
+        />
+      </FormControl>
 
-          <FormControl fullWidth margin="normal">
-            <TextField
-              label="Description"
-              name="description"
-              multiline
-              rows={3}
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </FormControl>
+      {/* Buttons */}
+      <Box
+        mt={3}
+        display="flex"
+        justifyContent="flex-end"
+        gap={1}
+        flexWrap="wrap"
+      >
+        <Button
+          variant="outlined"
+          onClick={handleClose}
+          sx={{
+            color: "#f44336",
+            borderColor: "#f44336",
+            "&:hover": {
+              backgroundColor: "#f44336",
+              color: "#fff",
+            },
+            fontSize: isSmallScreen ? "0.8rem" : "1rem",
+            textTransform: "none",
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            backgroundColor: "#4CAF50",
+            "&:hover": {
+              backgroundColor: "#43A047",
+            },
+            fontSize: isSmallScreen ? "0.8rem" : "1rem",
+          }}
+        >
+          <span className="capitalize">
+            {mode === "create" ? "Add Product" : "Update"}
+          </span>
+        </Button>
+      </Box>
+    </form>
+  );
+};
 
-          <Box mt={3} display="flex" justifyContent="flex-end" gap={1}>
-            <Button variant="outlined" onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button type="submit" variant="contained">
-              {mode === 'create' ? 'Create' : 'Update'}
-            </Button>
-          </Box>
-        </form>
-  )
-}
-
-export default ProductForm
+export default ProductForm;

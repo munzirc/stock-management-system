@@ -13,10 +13,10 @@ const ToggleFilter = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="sm:hidden fixed top-[44px] right-1 z-40">
+    <div className="sm:hidden fixed top-[60px] left-0 right-0 z-99">
       {/* Slide Down Filter Panel */}
       <div
-        className={`transition-all duration-300 ease-in-out bg-white rounded-b-2xl shadow-xl p-4 ${
+        className={`transition-all duration-300 ease-in-out bg-white rounded-b-2xl shadow-xl pb-4 px-4 ${
           isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
@@ -100,11 +100,11 @@ const ToggleFilter = ({
 
       {/* Toggle Button */}
       <div
-        className="mx-auto w-fit mt-2 bg-[#4B49AC] text-white text-sm py-2 px-4 flex items-center justify-center gap-2 cursor-pointer rounded-full shadow-lg"
+        className={`fixed ${isOpen ? 'top-[345px]' : 'top-[84px]' } right-4 mx-auto w-fit ${isOpen ? 'mt-2' : ''} bg-[#4B49AC] text-white text-sm py-2 px-4 flex items-center justify-center gap-2 cursor-pointer rounded-full shadow-lg`}
         onClick={() => setIsOpen(!isOpen)}
       >
         <SlidersHorizontal size={16} />
-        {isOpen ? "Hide Filters" : "Show Filters"}
+        {isOpen ? <span className="hidden sm:flex">Hide Filters</span> : <span className="hidden sm:flex">Show Filters</span>}
         {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
       </div>
     </div>

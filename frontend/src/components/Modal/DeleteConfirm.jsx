@@ -73,6 +73,7 @@ const DeleteConfirmModal = ({ setProducts }) => {
           onClick={() => setModalOpen(false)}
           variant="outlined"
           size={isMobile ? "small" : "medium"}
+          sx={{textTransform: "none"}}
         >
           Cancel
         </Button>
@@ -81,6 +82,7 @@ const DeleteConfirmModal = ({ setProducts }) => {
           variant="contained"
           color="error"
           size={isMobile ? "small" : "medium"}
+          sx={{textTransform: "none"}}
         >
           Delete
         </Button>

@@ -49,11 +49,11 @@ const ReportDownloadButtons = () => {
   };
 
   return (
-    <div className="flex flex-row sm:flex-col gap-4 lg:flex-row lg:p-4 ">
+    <div className="flex flex-col gap-4 lg:flex-row lg:p-4 ">
       <button
         onClick={() => handleDownload("product")}
         disabled={downloading.product}
-        className={`px-4 py-2 max-w-fit rounded-lg text-white text-xs sm:text-sm font-semibold flex items-center justify-center transition ${
+        className={`px-4 py-2 max-w-fit rounded-lg text-white text-xs sm:text-sm font-semibold flex items-center justify-center transition  ${
           downloading.product
             ? "bg-gray-400 cursor-not-allowed"
             : "bg-green-600 hover:bg-green-700"

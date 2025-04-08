@@ -113,7 +113,7 @@ const ProductManagement = () => {
 
   return (
     <div className="w-full pb-[68px] sm:p-4 h-full flex flex-col relative">
-      <div className="flex flex-col sm:gap-5 md:flex-row bg-[#F5F7FF] sm:rounded-t-lg flex-1 p-4 ">
+      <div className="flex flex-row sm:gap-5 md:flex-row bg-[#F5F7FF] sm:rounded-t-lg flex-1 p-4 relative">
         <div className="flex flex-col pt-4 sm:pt-0 sm:gap-4 lg:gap-0 lg:flex-row lg:items-center relative">
           {/*Buttons *******************************************************88888 */}
           <ReportDownloadButtons />

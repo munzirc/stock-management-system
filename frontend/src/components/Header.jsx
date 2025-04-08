@@ -18,8 +18,8 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full px-8 py-3 flex justify-between items-center bg-white dark:bg-gray-900 shadow-[0px_5px_21px_-5px_#CDD1E1] dark:shadow-gray-800 z-50 relative">
-      <h1 className="text-xl text-[#4B49AC] font-bold dark:text-white">
+    <header className="w-full px-8 py-3 flex justify-between items-center bg-white  shadow-[0px_5px_21px_-5px_#CDD1E1]  z-50 relative">
+      <h1 className="text-xl text-[#4B49AC] font-bold">
         Dashboard
       </h1>
       <button
