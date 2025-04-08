@@ -71,6 +71,8 @@ const StockOverview = () => {
               <Card title="📦 Total Products" value={totalProducts} />
               <Card title="🗂️ Total Categories" value={totalCategories} />
               <Card title="💰 Stock Value" value={`₹${stockValue}`} />
+              <Card title="💸 Total Revenue" value={`₹${totalRevenue}`} />
+              <Card title="🏷️ Total Items Sold" value={`₹${totalItemsSold}`} />
               <Card title="⚠️ Low Stock" value={lowStock.length} />
               <Card title="❌ Out of Stock" value={outOfStock.length} />
               <Card title="📊 Avg. Price" value={`₹${averagePrice}`} />
