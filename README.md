@@ -73,12 +73,7 @@ A full-stack web application to manage and track products, monitor stock levels,
 # runs on http://localhost:5000
 ```
 
-5. Hosted Version
-
-```bash
-Frontend: https://stock-management-system-frontend-gilt.vercel.app/
-Backend API: https://stock-management-system-backend-w67c.onrender.com
-```
+🌐 Hosted Version: https://stock-management-system-frontend-gilt.vercel.app/
 
 📌 Future Improvements
 
