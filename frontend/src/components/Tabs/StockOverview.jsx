@@ -51,7 +51,7 @@ const StockOverview = () => {
 
   return (
     <div className="w-full sm:p-4 h-full flex flex-col">
-      <div className="w-full bg-[#F5F7FF] sm:rounded-lg overflow-y-auto shadow-[5px_5px_10px_-2px_rgba(0,0,0,0.1)]">
+      <div className="w-full h-full bg-[#F5F7FF] sm:rounded-lg overflow-y-auto shadow-[5px_5px_10px_-2px_rgba(0,0,0,0.1)]">
         {loading ? (
           <Box
             sx={{
