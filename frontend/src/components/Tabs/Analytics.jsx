@@ -31,14 +31,14 @@ const Analytics = () => {
   }, []);
 
   return (
-    <div className="w-full  sm:p-4  h-full flex flex-col">
+    <div className="w-full sm:p-4  h-full flex flex-col">
       <div className="w-full h-full bg-[#F5F7FF] sm:rounded-lg shadow-[5px_5px_10px_-2px_rgba(0,0,0,0.1)] ">
-        <div className="h-full grid grid-cols-1 lg:grid-cols-2 overflow-y-auto gap-6 p-4 pb-22 sm:pb-4 ">
+        <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 overflow-y-auto gap-6 p-4 pb-22 sm:pb-4 ">
           <SalesOverTimeChart salesData={analyticsData.salesOverTime} />
-          <RevenueTrendsChart salesData={analyticsData.salesOverTime} />
           <TopSellingProductsChart
             productSales={analyticsData.topSellingProducts}
           />
+          <RevenueTrendsChart salesData={analyticsData.salesOverTime} />
           <CategoryDistributionChart
             categoryData={analyticsData.categoryDistribution}
           />

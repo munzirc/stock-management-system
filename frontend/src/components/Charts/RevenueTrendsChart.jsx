@@ -59,7 +59,7 @@ const RevenueTrendsChart = ({ salesData }) => {
   };
 
   return (
-    <ChartCard title="💵 Revenue Trends">
+    <ChartCard title="💵 Revenue Trends" className="h-full">
       <Bar key="revenue-chart" data={chartData} options={options} />
     </ChartCard>
   );

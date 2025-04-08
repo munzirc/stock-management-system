@@ -63,7 +63,7 @@ const SalesOverTimeChart = ({ salesData }) => {
   };
 
   return (
-    <ChartCard title="📆 Sales Over Time" className="h-96">
+    <ChartCard title="📆 Sales Over Time" className="h-full">
       <Line key="sales-overtime" data={chartData} options={options} />
     </ChartCard>
   );

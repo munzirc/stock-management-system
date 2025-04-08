@@ -61,7 +61,7 @@ const TopSellingProductsChart = ({ productSales = [] }) => {
   };
 
   return (
-    <ChartCard title="🔢 Top Selling Products" className="h-96">
+    <ChartCard title="🔢 Top Selling Products" className="h-full">
       <Bar data={chartData} options={options} />
     </ChartCard>
   );

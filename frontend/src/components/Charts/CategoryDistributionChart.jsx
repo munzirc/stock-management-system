@@ -42,7 +42,7 @@ const CategoryDistributionChart = ({ categoryData = [] }) => {
   };
 
   return (
-    <ChartCard title="📂 Category-wise Distribution" className="h-96">
+    <ChartCard title="📂 Category-wise Distribution" className="h-full">
       <Pie data={chartData} options={options} />
     </ChartCard>
   );
