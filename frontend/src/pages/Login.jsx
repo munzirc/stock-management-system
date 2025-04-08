@@ -63,8 +63,8 @@ const Login = () => {
       className="relative w-full min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/home-bg.png')" }}
     >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-white/60 backdrop-blur-md rounded-xl p-8 shadow-xl border border-white text-center w-full max-w-md">
+      <div className="absolute inset-0 flex items-center justify-center p-8 sm:p-0">
+        <div className="bg-white/60 backdrop-blur-md rounded-xl p-8 shadow-xl border border-white text-center w-full max-w-md ">
           <h4 className="text-2xl font-semibold text-[#4B49AC] mb-4">Login</h4>
           <form onSubmit={handleSubmit}>
             <FormControl fullWidth margin="normal" error={!!errors.username}>
