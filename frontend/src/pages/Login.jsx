@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Container,
   FormControl,
   FormHelperText,
@@ -15,8 +16,10 @@ import authService from "../services/auth.api";
 const Login = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [loginloading, setLoginLoading] = useState(false);
 
-  const { isAuthenticated, setIsAuthenticated, showSnackbar, setLoading } = useContext(Context);
+  const { isAuthenticated, setIsAuthenticated, showSnackbar, setLoading } =
+    useContext(Context);
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({ username: "", password: "" });
@@ -41,72 +44,130 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-
-        try {
-          await authService.login(username, password);
-          await setIsAuthenticated(true);
-          navigate("/dash");
-        } catch (error) {
-          showSnackbar({ message: error.message, severity: "error" });
-        } finally {
-          setLoading(false);
-        }
-      
+      try {
+        setLoginLoading(true);
+        await authService.login(username, password);
+        await setIsAuthenticated(true);
+        navigate("/dash");
+      } catch (error) {
+        showSnackbar({ message: error.message, severity: "error" });
+      } finally {
+        setLoginLoading(false);
+        setLoading(false);
+      }
     }
   };
 
-
   return (
-    <Container maxWidth="xs">
-      <Box
-        sx={{
-          mt: 8,
-          p: 4,
-          boxShadow: 3,
-          borderRadius: 2,
-          textAlign: "center",
-          backgroundColor: "white",
-        }}
-      >
-        <Typography variant="h3" sx={{ color: "gray" }}>
-          Login
-        </Typography>
-        <form onSubmit={handleSubmit}>
-          <FormControl fullWidth margin="normal" error={!!errors.username}>
-            <TextField
-              label="Username"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              value={username}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            <FormHelperText>{errors.username}</FormHelperText>
-          </FormControl>
+    <div
+      className="relative w-full min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/home-bg.png')" }}
+    >
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="bg-white/60 backdrop-blur-md rounded-xl p-8 shadow-xl border border-white text-center w-full max-w-md">
+          <h4 className="text-2xl font-semibold text-[#4B49AC] mb-4">Login</h4>
+          <form onSubmit={handleSubmit}>
+            <FormControl fullWidth margin="normal" error={!!errors.username}>
+              <TextField
+                label="Username"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+                InputProps={{
+                  style: {
+                    color: "#333",
+                    borderColor: "white",
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: "#555",
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "white",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#4B49AC",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#4B49AC",
+                    },
+                  },
+                  input: { color: "#333" },
+                }}
+              />
+              <FormHelperText>{errors.username}</FormHelperText>
+            </FormControl>
 
-          <FormControl fullWidth margin="normal" error={!!errors.password}>
-            <TextField
-              label="Password"
-              type="password"
-              variant="outlined"
+            <FormControl fullWidth margin="normal" error={!!errors.password}>
+              <TextField
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                InputProps={{
+                  style: {
+                    color: "#333",
+                  },
+                }}
+                InputLabelProps={{
+                  style: {
+                    color: "#555",
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "white",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#4B49AC",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#4B49AC",
+                    },
+                  },
+                  input: { color: "#333" },
+                }}
+              />
+              <FormHelperText>{errors.password}</FormHelperText>
+            </FormControl>
+
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={loginloading}
+              sx={{
+                mt: 2,
+                bgcolor: "#4B49AC",
+                color: "white",
+                "&:hover": {
+                  bgcolor: "#3b3a96",
+                },
+              }}
               fullWidth
-              margin="normal"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <FormHelperText>{errors.password}</FormHelperText>
-          </FormControl>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{ mt: 2, bgcolor: "gray" }}
-          >
-            Login
-          </Button>
-        </form>
-      </Box>
-    </Container>
+            >
+              {loginloading ? (
+                <div className="flex gap-2 items-center justify-center">
+                  <CircularProgress size={16} color="inherit" />
+                  <span className="normal-case">Logging in...</span>
+                </div>
+              ) : (
+                "Login"
+              )}
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
